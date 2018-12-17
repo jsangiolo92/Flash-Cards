@@ -1,0 +1,27 @@
+{
+  "name": "flash-cards",
+  "version": "1.0.0",
+  "description": "Application for creating and reviewing flash cards",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jsangiolo92/Flash-Cards.git"
+  },
+  "author": "JCS",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jsangiolo92/Flash-Cards/issues"
+  },
+  "homepage": "https://github.com/jsangiolo92/Flash-Cards#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.0",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3"
+  }
+}

@@ -4,7 +4,8 @@
   "description": "Application for creating and reviewing flash cards",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server/index.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "mongoose": "^5.4.0",
+    "nodemon": "^1.18.9",
     "react": "^16.6.3",
     "react-dom": "^16.6.3"
   }

@@ -7,6 +7,7 @@ class CardForm extends React.Component{
     super(props)
     this.state = {
       title: '',
+      subject: '',
       answer: '',
       links: [],
       author: ''
@@ -26,6 +27,7 @@ class CardForm extends React.Component{
 
     axios.post('/cards', {
       title: this.state.title,
+      subject: this.state.subject,
       answer: this.state.answer,
       links: this.state.links,
       author: this.state.author
@@ -33,7 +35,7 @@ class CardForm extends React.Component{
     .then( (response) => {
       console.log('new card added to db');
       document.getElementById('card-form').reset();
-      this.setState({title: '', answer: '', links: [], author: ''});
+      this.setState({title: '', subject: '', answer: '', links: [], author: ''});
     })
     .catch( (err) => console.log('error on post to cards'))
   }
@@ -45,6 +47,15 @@ class CardForm extends React.Component{
           Title
           <input
             name="title"
+            type="text"
+            onChange={this.handleChange}
+          />
+        </label>
+        <br/>
+        <label>
+          Subject
+          <input
+            name="subject"
             type="text"
             onChange={this.handleChange}
           />

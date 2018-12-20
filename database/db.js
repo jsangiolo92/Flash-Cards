@@ -16,4 +16,16 @@ let categorySchema = mongoose.Schema({
 let Card = mongoose.model('Card', cardSchema);
 let Category = mongoose.model('Category', categorySchema);
 
-module.exports = {}
+const addCard = (info) => {
+  return Card.create({
+    title: info.title,
+    subject: info.subject,
+    answer: info.answer,
+    author: info.author,
+    links: info.links
+  })
+}
+
+module.exports = {
+  addCard: addCard
+}

@@ -23,14 +23,26 @@ class CardForm extends React.Component{
 
   handleSubmit(e) {
     e.preventDefault();
-    document.getElementById('card-form').reset();
-    this.setState({title: '', answer: '', links: [], author: ''})
+
+    axios.post('/cards', {
+      title: this.state.title,
+      answer: this.state.answer,
+      links: this.state.links,
+      author: this.state.author
+    })
+    .then( (response) => {
+      console.log('new card added to db');
+      document.getElementById('card-form').reset();
+      this.setState({title: '', answer: '', links: [], author: ''});
+    })
+    .catch( (err) => console.log('error on post to cards'))
   }
 
   render() {
     return(
       <form id="card-form" onSubmit={this.handleSubmit}>
         <label>
+          Title
           <input
             name="title"
             type="text"
@@ -39,6 +51,7 @@ class CardForm extends React.Component{
         </label>
         <br/>
         <label>
+          Answer
           <textarea rows="4" cols="50"
             name="answer"
             onChange={this.handleChange}
@@ -46,6 +59,7 @@ class CardForm extends React.Component{
         </label>
         <br/>
         <label>
+          Links
           <textarea rows="4" cols="50"
             name="links"
             onChange={this.handleChange}
@@ -53,6 +67,7 @@ class CardForm extends React.Component{
         </label>
         <br/>
         <label>
+          Author
           <input
             name="author"
             type="text"

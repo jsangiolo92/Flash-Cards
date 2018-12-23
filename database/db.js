@@ -32,6 +32,10 @@ const addCategory = (info) => {
   )
 }
 
+const getCards = (subject) => {
+  return Card.find({subject: subject}).exec()
+}
+
 const getCategories = () => {
   return Category.find().exec();
 }
@@ -39,5 +43,6 @@ const getCategories = () => {
 module.exports = {
   addCard: addCard,
   addCategory: addCategory,
+  getCards: getCards,
   getCategories: getCategories
 }

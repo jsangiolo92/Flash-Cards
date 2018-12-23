@@ -17,6 +17,12 @@ app.get('/categories', (req, res) => {
   .catch( (err) => console.log('error in db.getCategories: ', err));
 })
 
+app.get('/cards', (req, res) => {
+  db.getCards(req.query.subject)
+  .then( (results) => res.send(results))
+  .catch( (err) => console.log('error in db.getCards: ', err));
+})
+
 app.post('/cards', (req, res) => {
   db.addCard(req.body)
   .then( () => {

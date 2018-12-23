@@ -11,7 +11,8 @@ class App extends React.Component {
       showForm: false,
       categories: [],
       currentCategory: '',
-      cards: []
+      cards: [],
+      currentCard: {}
     }
 
     this.toggleForm = this.toggleForm.bind(this);
@@ -42,29 +43,30 @@ class App extends React.Component {
     .catch( (err) => console.log('error in get to cards: ', err));
   }
 
-  categoryChange(e) {
-    this.setState({currentCategory: e.target.value}, () => this.getCards())
+  dropDownChange(e) {
+    if (e.target.id === 'subjects') this.setState({currentCategory: e.target.value}, () => this.getCards())
+    else if (e.target.id === 'cards') this.setState({currentCard: this.state.cards[e.target.value]})
   }
 
   render() {
     return (
       <div>
 
-        <select onChange={(e) => this.categoryChange(e)}>
+        <select id="subjects" onChange={(e) => this.dropDownChange(e)}>
           <option defaultValue>Card Categories</option>
           {this.state.categories.map(category =>
             <option value={category} key={category}>{category}</option>  
           )}
         </select>
 
-        <select>
+        <select id="cards" onChange={(e) => this.dropDownChange(e)}>
           <option defaultValue>Select a Card</option>
-          {this.state.cards.map(card =>
-            <option value={card.title} key={card.title}>{card.title}</option>  
+          {this.state.cards.map( (card, index) =>
+            <option value={index} key={index}>{card.title}</option>  
           )}
         </select>
         <br/><br/>
-        
+
         <button onClick={this.toggleForm}>Add a Card</button>
         {this.state.showForm ? <CardForm toggleForm={this.toggleForm} getCategories={this.getCategories}/> : null}
       </div>

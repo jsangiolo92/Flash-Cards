@@ -26,6 +26,13 @@ const addCard = (info) => {
   })
 }
 
+const addCategory = (info) => {
+  return Category.findOneAndUpdate(
+    {name: info.subject}, {name: info.subject}, {upsert: true}
+  )
+}
+
 module.exports = {
-  addCard: addCard
+  addCard: addCard,
+  addCategory: addCategory
 }

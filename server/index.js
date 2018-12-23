@@ -9,9 +9,12 @@ app.use(parser.json());
 app.use(express.static(__dirname + '/../client/dist'));
 
 app.post('/cards', (req, res) => {
-  console.log('req.body is: ', req.body);
   db.addCard(req.body)
-  .then( () => res.sendStatus(201))
+  .then( () => {
+    db.addCategory(req.body)
+    .then ( () => res.sendStatus(201))
+    .catch( (err) => console.log('error in db.addCategory', err));
+  })
   .catch( (err) => console.log('error in db.addCard: ', err));
 })
 

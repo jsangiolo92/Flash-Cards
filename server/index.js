@@ -8,6 +8,15 @@ const port = 4000;
 app.use(parser.json());
 app.use(express.static(__dirname + '/../client/dist'));
 
+app.get('/categories', (req, res) => {
+  db.getCategories()
+  .then( (results) => {
+    let categories = results.map(val => val.name);
+    res.send(categories);
+  })
+  .catch( (err) => console.log('error in db.getCategories: ', err));
+})
+
 app.post('/cards', (req, res) => {
   db.addCard(req.body)
   .then( () => {

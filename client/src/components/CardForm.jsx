@@ -35,7 +35,7 @@ class CardForm extends React.Component{
     .then( (response) => {
       console.log('new card added to db');
       document.getElementById('card-form').reset();
-      this.setState({title: '', subject: '', answer: '', links: [], author: ''});
+      this.setState({title: '', subject: '', answer: '', links: [], author: ''}, () => this.props.getCategories());
     })
     .catch( (err) => console.log('error on post to cards'))
   }

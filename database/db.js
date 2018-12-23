@@ -32,7 +32,12 @@ const addCategory = (info) => {
   )
 }
 
+const getCategories = () => {
+  return Category.find().exec();
+}
+
 module.exports = {
   addCard: addCard,
-  addCategory: addCategory
+  addCategory: addCategory,
+  getCategories: getCategories
 }

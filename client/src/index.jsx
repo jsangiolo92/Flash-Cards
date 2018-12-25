@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Card from './components/Card.jsx';
 import CardForm from './components/CardForm.jsx';
 
 const axios = require('axios');
@@ -9,6 +10,7 @@ class App extends React.Component {
     super(props)
     this.state = {
       showForm: false,
+      showCard: false,
       categories: [],
       currentCategory: '',
       cards: [],
@@ -16,6 +18,7 @@ class App extends React.Component {
     }
 
     this.toggleForm = this.toggleForm.bind(this);
+    this.hideCard = this.hideCard.bind(this);
     this.getCategories = this.getCategories.bind(this);
   }
 
@@ -25,6 +28,10 @@ class App extends React.Component {
 
   toggleForm() {
     this.setState({showForm: !this.state.showForm});
+  }
+
+  hideCard() {
+    this.setState({showCard: false});
   }
 
   getCategories() {
@@ -45,7 +52,7 @@ class App extends React.Component {
 
   dropDownChange(e) {
     if (e.target.id === 'subjects') this.setState({currentCategory: e.target.value}, () => this.getCards())
-    else if (e.target.id === 'cards') this.setState({currentCard: this.state.cards[e.target.value]})
+    else if (e.target.id === 'cards') this.setState({currentCard: this.state.cards[e.target.value], showCard: true})
   }
 
   render() {
@@ -68,7 +75,9 @@ class App extends React.Component {
         <br/><br/>
 
         <button onClick={this.toggleForm}>Add a Card</button>
+
         {this.state.showForm ? <CardForm toggleForm={this.toggleForm} getCategories={this.getCategories}/> : null}
+        {this.state.showCard ? <Card currentCard={this.state.currentCard} hideCard={this.hideCard}/> : null}
       </div>
     )
   }

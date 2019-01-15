@@ -7,7 +7,7 @@ const Card = ({currentCard, showFront, flipCard, hideCard}) => {
     <div>
       {showFront ? 
       <CardFront title={currentCard.title} flipCard={flipCard} hideCard={hideCard} /> : 
-      <CardBack hideCard={hideCard} />}
+      <CardBack currentCard={currentCard} hideCard={hideCard} />}
     </div>
   )
 }

@@ -11,6 +11,7 @@ class App extends React.Component {
     this.state = {
       showForm: false,
       showCard: false,
+      showFront: true,
       categories: [],
       currentCategory: '',
       cards: [],
@@ -18,6 +19,7 @@ class App extends React.Component {
     }
 
     this.toggleForm = this.toggleForm.bind(this);
+    this.flipCard = this.flipCard.bind(this);
     this.hideCard = this.hideCard.bind(this);
     this.getCategories = this.getCategories.bind(this);
   }
@@ -28,6 +30,10 @@ class App extends React.Component {
 
   toggleForm() {
     this.setState({showForm: !this.state.showForm});
+  }
+
+  flipCard() {
+    this.setState({showFront: !this.state.showFront});
   }
 
   hideCard() {
@@ -52,7 +58,7 @@ class App extends React.Component {
 
   dropDownChange(e) {
     if (e.target.id === 'subjects') this.setState({currentCategory: e.target.value}, () => this.getCards())
-    else if (e.target.id === 'cards') this.setState({currentCard: this.state.cards[e.target.value], showCard: true})
+    else if (e.target.id === 'cards') this.setState({currentCard: this.state.cards[e.target.value], showCard: true, showFront: true})
   }
 
   render() {
@@ -77,7 +83,7 @@ class App extends React.Component {
         <button onClick={this.toggleForm}>Add a Card</button>
 
         {this.state.showForm ? <CardForm toggleForm={this.toggleForm} getCategories={this.getCategories}/> : null}
-        {this.state.showCard ? <Card currentCard={this.state.currentCard} hideCard={this.hideCard}/> : null}
+        {this.state.showCard ? <Card currentCard={this.state.currentCard} showFront={this.state.showFront} flipCard={this.flipCard} hideCard={this.hideCard}/> : null}
       </div>
     )
   }

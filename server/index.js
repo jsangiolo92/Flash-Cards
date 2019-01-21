@@ -38,8 +38,9 @@ app.put('/cards', (req, res) => {
 })
 
 app.delete('/cards', (req, res) => {
-  console.log('request to app.delete recieved');
-  res.send();
+  db.deleteCard(req.body.id)
+  .then( (response) => res.send(response))
+  .catch( (err) => console.log('error in db.deleteCard: ', err));
 })
 
 app.get('/*', (req, res) => {

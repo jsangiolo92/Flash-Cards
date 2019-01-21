@@ -26,6 +26,10 @@ const addCard = (info) => {
   })
 }
 
+const deleteCard = (id) => {
+  return Card.findByIdAndRemove(id);
+}
+
 const addCategory = (info) => {
   return Category.findOneAndUpdate(
     {name: info.subject}, {name: info.subject}, {upsert: true}
@@ -42,6 +46,7 @@ const getCategories = () => {
 
 module.exports = {
   addCard: addCard,
+  deleteCard: deleteCard,
   addCategory: addCategory,
   getCards: getCards,
   getCategories: getCategories

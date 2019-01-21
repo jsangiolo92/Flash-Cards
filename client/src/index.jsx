@@ -35,8 +35,11 @@ class App extends React.Component {
   }
 
   deleteCard() {
-    axios.delete('/cards')
-    .then( (response) => console.log('delete request sent'))
+    axios.delete('/cards', {data: {id: this.state.currentCard._id}})
+    .then( (response) => {
+      console.log('card deleted');
+      this.setState({showCard: false}, () => this.getCards())
+    })
     .catch( (err) => console.log('error in delete to cards: ', err));
   }
 

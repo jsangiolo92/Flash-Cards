@@ -33,6 +33,10 @@ app.post('/cards', (req, res) => {
   .catch( (err) => console.log('error in db.addCard: ', err));
 })
 
+app.put('/cards', (req, res) => {
+  res.send('request to app.put received');
+})
+
 app.get('/*', (req, res) => {
   res.send('Hello, world!');
 })

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CardBack = ({currentCard, hideCard}) => {
+const CardBack = ({currentCard, hideCard, updateCard}) => {
   return(
     <div>
       <div>{currentCard.answer}</div>
@@ -14,6 +14,7 @@ const CardBack = ({currentCard, hideCard}) => {
 
       <br/>
       <button onClick={hideCard}>Click to Close</button>
+      <button onClick={updateCard}>Click to Edit</button>
     </div>
   )
 }

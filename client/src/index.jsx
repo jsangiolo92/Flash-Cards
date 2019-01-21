@@ -19,6 +19,7 @@ class App extends React.Component {
     }
 
     this.toggleForm = this.toggleForm.bind(this);
+    this.deleteCard = this.deleteCard.bind(this);
     this.flipCard = this.flipCard.bind(this);
     this.hideCard = this.hideCard.bind(this);
     this.updateCard = this.updateCard.bind(this);
@@ -31,6 +32,10 @@ class App extends React.Component {
 
   toggleForm() {
     this.setState({showForm: !this.state.showForm});
+  }
+
+  deleteCard() {
+    console.log('deleteCard button clicked.');
   }
 
   flipCard() {
@@ -92,7 +97,8 @@ class App extends React.Component {
         {this.state.showForm ? <CardForm toggleForm={this.toggleForm} getCategories={this.getCategories}/> : null}
         {this.state.showCard ? <Card 
           currentCard={this.state.currentCard} 
-          showFront={this.state.showFront} 
+          showFront={this.state.showFront}
+          deleteCard={this.deleteCard}
           flipCard={this.flipCard} 
           hideCard={this.hideCard} 
           updateCard={this.updateCard}/>

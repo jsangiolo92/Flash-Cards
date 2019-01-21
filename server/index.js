@@ -37,6 +37,11 @@ app.put('/cards', (req, res) => {
   res.send('request to app.put received');
 })
 
+app.delete('/cards', (req, res) => {
+  console.log('request to app.delete recieved');
+  res.send();
+})
+
 app.get('/*', (req, res) => {
   res.send('Hello, world!');
 })

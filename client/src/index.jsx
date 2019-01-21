@@ -35,7 +35,9 @@ class App extends React.Component {
   }
 
   deleteCard() {
-    console.log('deleteCard button clicked.');
+    axios.delete('/cards')
+    .then( (response) => console.log('delete request sent'))
+    .catch( (err) => console.log('error in delete to cards: ', err));
   }
 
   flipCard() {

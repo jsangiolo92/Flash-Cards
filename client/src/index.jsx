@@ -42,7 +42,9 @@ class App extends React.Component {
   }
 
   updateCard() {
-    console.log('updateCard button clicked')
+    axios.put('/cards')
+    .then( (response) => console.log('put request sent'))
+    .catch( (err) => console.log('error in put to cards: ', err));
   }
 
   getCategories() {

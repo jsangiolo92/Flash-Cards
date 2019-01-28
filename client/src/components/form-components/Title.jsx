@@ -1,12 +1,13 @@
 import React from 'react';
 
-const Title = ({handleChange}) => {
+const Title = ({title, handleChange}) => {
   return(
     <label>
       Title
-      <input
-        name="title"
+      <input 
+        name="title" 
         type="text"
+        value={title}
         onChange={handleChange}
       />
     </label>

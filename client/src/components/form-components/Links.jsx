@@ -1,11 +1,12 @@
 import React from 'react';
 
-const Links = ({handleChange}) => {
+const Links = ({links, handleChange}) => {
   return(
     <label>
       Links
-      <textarea rows="4" cols="50" 
+      <textarea rows="4" cols="500" 
         name="links"
+        value={links}
         onChange={handleChange}
       />
     </label>

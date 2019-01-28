@@ -52,6 +52,8 @@ class App extends React.Component {
   }
 
   updateCard() {
+    this.hideCard();
+    this.toggleForm();
     axios.put('/cards')
     .then( (response) => console.log('put request sent'))
     .catch( (err) => console.log('error in put to cards: ', err));
@@ -99,7 +101,7 @@ class App extends React.Component {
 
         <button onClick={this.toggleForm}>Add a Card</button>
 
-        {this.state.showForm ? <CardForm toggleForm={this.toggleForm} getCategories={this.getCategories}/> : null}
+        {this.state.showForm ? <CardForm card={this.state.currentCard} toggleForm={this.toggleForm} getCategories={this.getCategories}/> : null}
         {this.state.showCard ? <Card 
           currentCard={this.state.currentCard} 
           showFront={this.state.showFront}

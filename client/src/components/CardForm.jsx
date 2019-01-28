@@ -11,11 +11,11 @@ class CardForm extends React.Component{
   constructor(props) {
     super(props)
     this.state = {
-      title: '',
-      subject: '',
-      answer: '',
-      links: [],
-      author: ''
+      title: this.props.card.title,
+      subject: this.props.card.subject,
+      answer: this.props.card.answer,
+      links: this.props.card.links,
+      author: this.props.card.author
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -48,15 +48,15 @@ class CardForm extends React.Component{
   render() {
     return(
       <form id="card-form" onSubmit={this.handleSubmit}>
-        <Title handleChange={this.handleChange}/>
+        <Title title={this.state.title} handleChange={this.handleChange}/>
         <br/>
-        <Subject handleChange={this.handleChange}/>
+        <Subject subject={this.state.subject} handleChange={this.handleChange}/>
         <br/>
-        <Answer handleChange={this.handleChange}/>
+        <Answer answer={this.state.answer} handleChange={this.handleChange}/>
         <br/>
-        <Links handleChange={this.handleChange}/>
+        <Links links={this.state.links} handleChange={this.handleChange}/>
         <br/>
-        <Author handleChange={this.handleChange}/>
+        <Author author={this.state.author} handleChange={this.handleChange}/>
         <br/>
         <input type="submit" value="Submit"/>
         <button onClick={this.props.toggleForm}>Close Form</button>

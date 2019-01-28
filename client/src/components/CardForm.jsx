@@ -1,4 +1,5 @@
 import React from 'react';
+import Title from './form-components/Title.jsx';
 
 const axios = require('axios');
 
@@ -43,14 +44,7 @@ class CardForm extends React.Component{
   render() {
     return(
       <form id="card-form" onSubmit={this.handleSubmit}>
-        <label>
-          Title
-          <input
-            name="title"
-            type="text"
-            onChange={this.handleChange}
-          />
-        </label>
+        <Title handleChange={this.handleChange}/>
         <br/>
         <label>
           Subject

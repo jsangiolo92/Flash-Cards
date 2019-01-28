@@ -2,6 +2,7 @@ import React from 'react';
 import Title from './form-components/Title.jsx';
 import Subject from './form-components/Subject.jsx';
 import Answer from './form-components/Answer.jsx';
+import Links from './form-components/Links.jsx';
 
 const axios = require('axios');
 
@@ -52,13 +53,7 @@ class CardForm extends React.Component{
         <br/>
         <Answer handleChange={this.handleChange}/>
         <br/>
-        <label>
-          Links
-          <textarea rows="4" cols="50"
-            name="links"
-            onChange={this.handleChange}
-          />
-        </label>
+        <Links handleChange={this.handleChange}/>
         <br/>
         <label>
           Author

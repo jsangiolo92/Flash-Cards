@@ -3,6 +3,7 @@ import Title from './form-components/Title.jsx';
 import Subject from './form-components/Subject.jsx';
 import Answer from './form-components/Answer.jsx';
 import Links from './form-components/Links.jsx';
+import Author from './form-components/Author.jsx';
 
 const axios = require('axios');
 
@@ -55,14 +56,7 @@ class CardForm extends React.Component{
         <br/>
         <Links handleChange={this.handleChange}/>
         <br/>
-        <label>
-          Author
-          <input
-            name="author"
-            type="text"
-            onChange={this.handleChange}
-          />
-        </label>
+        <Author handleChange={this.handleChange}/>
         <br/>
         <input type="submit" value="Submit"/>
         <button onClick={this.props.toggleForm}>Close Form</button>

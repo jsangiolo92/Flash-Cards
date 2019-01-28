@@ -1,4 +1,9 @@
 import React from 'react';
+import Title from './form-components/Title.jsx';
+import Subject from './form-components/Subject.jsx';
+import Answer from './form-components/Answer.jsx';
+import Links from './form-components/Links.jsx';
+import Author from './form-components/Author.jsx';
 
 const axios = require('axios');
 
@@ -43,48 +48,15 @@ class CardForm extends React.Component{
   render() {
     return(
       <form id="card-form" onSubmit={this.handleSubmit}>
-        <label>
-          Title
-          <input
-            name="title"
-            type="text"
-            onChange={this.handleChange}
-          />
-        </label>
+        <Title handleChange={this.handleChange}/>
         <br/>
-        <label>
-          Subject
-          <input
-            name="subject"
-            type="text"
-            onChange={this.handleChange}
-          />
-        </label>
+        <Subject handleChange={this.handleChange}/>
         <br/>
-        <label>
-          Answer
-          <textarea rows="4" cols="50"
-            name="answer"
-            onChange={this.handleChange}
-          />
-        </label>
+        <Answer handleChange={this.handleChange}/>
         <br/>
-        <label>
-          Links
-          <textarea rows="4" cols="50"
-            name="links"
-            onChange={this.handleChange}
-          />
-        </label>
+        <Links handleChange={this.handleChange}/>
         <br/>
-        <label>
-          Author
-          <input
-            name="author"
-            type="text"
-            onChange={this.handleChange}
-          />
-        </label>
+        <Author handleChange={this.handleChange}/>
         <br/>
         <input type="submit" value="Submit"/>
         <button onClick={this.props.toggleForm}>Close Form</button>

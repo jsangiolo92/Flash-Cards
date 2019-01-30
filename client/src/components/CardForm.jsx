@@ -11,52 +11,74 @@ class CardForm extends React.Component{
   constructor(props) {
     super(props)
     this.state = {
-      title: '',
-      subject: '',
-      answer: '',
-      links: [],
-      author: ''
+      title: this.props.card.title,
+      subject: this.props.card.subject,
+      answer: this.props.card.answer,
+      links: this.props.card.links,
+      author: this.props.card.author
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  resetForm() {
+    document.getElementById('card-form').reset();
+    this.setState({title: '', subject: '', answer: '', links: [], author: ''}, () => this.props.getCategories());
+  }
+
   handleChange(e) {
-    if (e.target.name === 'links') this.setState({links: e.target.value.split('\n')});
+    if (e.target.name === 'links') this.setState({links: e.target.value.split(',')});
     else this.setState({[e.target.name]: e.target.value});
   }
 
   handleSubmit(e) {
     e.preventDefault();
 
-    axios.post('/cards', {
-      title: this.state.title,
-      subject: this.state.subject,
-      answer: this.state.answer,
-      links: this.state.links,
-      author: this.state.author
-    })
-    .then( (response) => {
-      console.log('new card added to db');
-      document.getElementById('card-form').reset();
-      this.setState({title: '', subject: '', answer: '', links: [], author: ''}, () => this.props.getCategories());
-    })
-    .catch( (err) => console.log('error on post to cards'))
+    if (this.props.submitType === 'new') {
+      axios.post('/cards', {
+        title: this.state.title,
+        subject: this.state.subject,
+        answer: this.state.answer,
+        links: this.state.links,
+        author: this.state.author
+      })
+      .then( (response) => {
+        console.log('new card added to db');
+        this.resetForm();
+      })
+      .catch( (err) => console.log('error on post to cards'));
+    }
+    else {
+      axios.put('/cards', {
+        _id: this.props.card._id,
+        title: this.state.title,
+        subject: this.state.subject,
+        answer: this.state.answer,
+        links: this.state.links,
+        author: this.state.author
+      })
+      .then( () => {
+        console.log('card updated in db');
+        this.resetForm();
+      })
+      .catch( (err) => console.log('error in put to cards: ', err));
+    }
   }
+
 
   render() {
     return(
       <form id="card-form" onSubmit={this.handleSubmit}>
-        <Title handleChange={this.handleChange}/>
+        <Title title={this.state.title} handleChange={this.handleChange}/>
         <br/>
-        <Subject handleChange={this.handleChange}/>
+        <Subject subject={this.state.subject} handleChange={this.handleChange}/>
         <br/>
-        <Answer handleChange={this.handleChange}/>
+        <Answer answer={this.state.answer} handleChange={this.handleChange}/>
         <br/>
-        <Links handleChange={this.handleChange}/>
+        <Links links={this.state.links} handleChange={this.handleChange}/>
         <br/>
-        <Author handleChange={this.handleChange}/>
+        <Author author={this.state.author} handleChange={this.handleChange}/>
         <br/>
         <input type="submit" value="Submit"/>
         <button onClick={this.props.toggleForm}>Close Form</button>

@@ -28,13 +28,20 @@ app.post('/cards', (req, res) => {
   .then( () => {
     db.addCategory(req.body)
     .then ( () => res.sendStatus(201))
-    .catch( (err) => console.log('error in db.addCategory', err));
+    .catch( (err) => console.log('error in db.addCategory: ', err));
   })
   .catch( (err) => console.log('error in db.addCard: ', err));
 })
 
 app.put('/cards', (req, res) => {
-  res.send('request to app.put received');
+  console.log('request to app.put received', req.body);
+  db.updateCard(req.body)
+  .then( () => {
+    db.addCategory(req.body)
+    .then( () => res.sendStatus(204))
+    .catch( (err) => console.log('error in db.addCategory: ', err));
+  })
+  .catch( (err) => console.log('error in db.updateCard: ', err));
 })
 
 app.delete('/cards', (req, res) => {

@@ -69,7 +69,7 @@ class CardForm extends React.Component{
 
   render() {
     return(
-      <form id="card-form" onSubmit={this.handleSubmit}>
+      <form class="card-form" onSubmit={this.handleSubmit}>
         <Title title={this.state.title} handleChange={this.handleChange}/>
         <br/>
         <Subject subject={this.state.subject} handleChange={this.handleChange}/>

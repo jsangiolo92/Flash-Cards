@@ -32,7 +32,8 @@ class App extends React.Component {
   }
 
   toggleForm(cardType) {
-    this.setState({showForm: !this.state.showForm, cardType: cardType});
+    if (cardType === 'new') this.setState({currentCard: {}, showForm: !this.state.showForm, cardType: cardType});
+    else this.setState({showForm: !this.state.showForm, cardType: cardType});
   }
 
   deleteCard() {

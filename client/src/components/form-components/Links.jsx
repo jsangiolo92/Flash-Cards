@@ -4,7 +4,7 @@ const Links = ({links, handleChange}) => {
   return(
     <label>
       Links
-      <textarea rows="4" cols="150" 
+      <textarea rows="4" cols="75" 
         name="links"
         value={links}
         onChange={handleChange}

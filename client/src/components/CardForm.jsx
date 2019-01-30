@@ -22,13 +22,18 @@ class CardForm extends React.Component{
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  resetForm() {
+    document.getElementById('card-form').reset();
+    this.setState({title: '', subject: '', answer: '', links: [], author: ''}, () => this.props.getCategories());
+  }
+
   handleChange(e) {
     if (e.target.name === 'links') this.setState({links: e.target.value.split(',')});
     else this.setState({[e.target.name]: e.target.value});
   }
 
   handleSubmit(e) {
-    if(e.target.tagName !== 'TEXTAREA') e.preventDefault();
+    e.preventDefault();
 
     if (this.props.submitType === 'new') {
       axios.post('/cards', {
@@ -40,10 +45,9 @@ class CardForm extends React.Component{
       })
       .then( (response) => {
         console.log('new card added to db');
-        document.getElementById('card-form').reset();
-        this.setState({title: '', subject: '', answer: '', links: [], author: ''}, () => this.props.getCategories());
+        this.resetForm();
       })
-      .catch( (err) => console.log('error on post to cards'))
+      .catch( (err) => console.log('error on post to cards'));
     }
     else {
       axios.put('/cards', {
@@ -54,7 +58,10 @@ class CardForm extends React.Component{
         links: this.state.links,
         author: this.state.author
       })
-      .then( (response) => console.log('put request sent'))
+      .then( () => {
+        console.log('card updated in db');
+        this.resetForm();
+      })
       .catch( (err) => console.log('error in put to cards: ', err));
     }
   }

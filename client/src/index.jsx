@@ -11,11 +11,12 @@ class App extends React.Component {
     this.state = {
       showForm: false,
       showCard: false,
-      showFront: true,
+      showFront: true, 
       categories: [],
       currentCategory: '',
       cards: [],
-      currentCard: {}
+      currentCard: {},
+      cardType: ''
     }
 
     this.toggleForm = this.toggleForm.bind(this);
@@ -30,8 +31,8 @@ class App extends React.Component {
     this.getCategories()
   }
 
-  toggleForm() {
-    this.setState({showForm: !this.state.showForm});
+  toggleForm(cardType) {
+    this.setState({showForm: !this.state.showForm, cardType: cardType});
   }
 
   deleteCard() {
@@ -53,10 +54,7 @@ class App extends React.Component {
 
   updateCard() {
     this.hideCard();
-    this.toggleForm();
-    axios.put('/cards')
-    .then( (response) => console.log('put request sent'))
-    .catch( (err) => console.log('error in put to cards: ', err));
+    this.toggleForm('edit');
   }
 
   getCategories() {
@@ -99,9 +97,15 @@ class App extends React.Component {
         </select>
         <br/><br/>
 
-        <button onClick={this.toggleForm}>Add a Card</button>
+        <button onClick={() => this.toggleForm('new')}>Add a Card</button>
 
-        {this.state.showForm ? <CardForm card={this.state.currentCard} toggleForm={this.toggleForm} getCategories={this.getCategories}/> : null}
+        {this.state.showForm ? <CardForm 
+          card={this.state.currentCard} 
+          toggleForm={this.toggleForm} 
+          getCategories={this.getCategories}
+          submitType={this.state.cardType}/> 
+          : null}
+
         {this.state.showCard ? <Card 
           currentCard={this.state.currentCard} 
           showFront={this.state.showFront}

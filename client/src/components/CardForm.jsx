@@ -23,27 +23,42 @@ class CardForm extends React.Component{
   }
 
   handleChange(e) {
-    if (e.target.name === 'links') this.setState({links: e.target.value.split('\n')});
+    if (e.target.name === 'links') this.setState({links: e.target.value.split(',')});
     else this.setState({[e.target.name]: e.target.value});
   }
 
   handleSubmit(e) {
-    e.preventDefault();
+    if(e.target.tagName !== 'TEXTAREA') e.preventDefault();
 
-    axios.post('/cards', {
-      title: this.state.title,
-      subject: this.state.subject,
-      answer: this.state.answer,
-      links: this.state.links,
-      author: this.state.author
-    })
-    .then( (response) => {
-      console.log('new card added to db');
-      document.getElementById('card-form').reset();
-      this.setState({title: '', subject: '', answer: '', links: [], author: ''}, () => this.props.getCategories());
-    })
-    .catch( (err) => console.log('error on post to cards'))
+    if (this.props.submitType === 'new') {
+      axios.post('/cards', {
+        title: this.state.title,
+        subject: this.state.subject,
+        answer: this.state.answer,
+        links: this.state.links,
+        author: this.state.author
+      })
+      .then( (response) => {
+        console.log('new card added to db');
+        document.getElementById('card-form').reset();
+        this.setState({title: '', subject: '', answer: '', links: [], author: ''}, () => this.props.getCategories());
+      })
+      .catch( (err) => console.log('error on post to cards'))
+    }
+    else {
+      axios.put('/cards', {
+        _id: this.props.card._id,
+        title: this.state.title,
+        subject: this.state.subject,
+        answer: this.state.answer,
+        links: this.state.links,
+        author: this.state.author
+      })
+      .then( (response) => console.log('put request sent'))
+      .catch( (err) => console.log('error in put to cards: ', err));
+    }
   }
+
 
   render() {
     return(

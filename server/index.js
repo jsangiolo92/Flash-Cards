@@ -34,7 +34,7 @@ app.post('/cards', (req, res) => {
 })
 
 app.put('/cards', (req, res) => {
-  console.log('request to app.put received');
+  console.log('request to app.put received', req.body);
   db.updateCard(req.body)
   .then( () => {
     db.addCategory(req.body)

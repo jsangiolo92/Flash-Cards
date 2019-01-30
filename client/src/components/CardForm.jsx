@@ -80,8 +80,8 @@ class CardForm extends React.Component{
         <br/>
         <Author author={this.state.author} handleChange={this.handleChange}/>
         <br/>
-        <input type="submit" value="Submit"/>
-        <button onClick={this.props.toggleForm}>Close Form</button>
+        <input class="card-button" type="submit" value="Submit"/>
+        <button class="card-button" onClick={this.props.toggleForm}>Close Form</button>
       </form>
     )
   }

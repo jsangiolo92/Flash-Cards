@@ -3,6 +3,7 @@ import React from 'react';
 const Subject = ({subject, handleChange}) => {
   return(
     <input
+      class="card-input"
       name="subject"
       placeholder="Subject"
       type="text"

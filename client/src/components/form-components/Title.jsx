@@ -2,7 +2,8 @@ import React from 'react';
 
 const Title = ({title, handleChange}) => {
   return(
-    <input 
+    <input
+      class="card-input title"
       name="title"
       placeholder="Title"
       type="text"

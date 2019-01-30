@@ -2,7 +2,8 @@ import React from 'react';
 
 const Links = ({links, handleChange}) => {
   return(
-    <textarea rows="4" cols="50" 
+    <textarea
+      class="card-input links"
       name="links"
       placeholder="Links"
       value={links}

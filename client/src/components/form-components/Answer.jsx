@@ -2,7 +2,8 @@ import React from 'react';
 
 const Answer = ({answer, handleChange}) => {
   return(
-    <textarea rows="4" cols="50"
+    <textarea
+      class="card-input answer"
       name="answer"
       placeholder="Answer"
       value={answer}

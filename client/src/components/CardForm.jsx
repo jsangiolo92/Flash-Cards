@@ -47,7 +47,7 @@ class CardForm extends React.Component{
         console.log('new card added to db');
         this.resetForm();
       })
-      .catch( (err) => console.log('error on post to cards'));
+      .catch( (err) => console.log('error on post to cards: ', err));
     }
     else {
       axios.put('/cards', {

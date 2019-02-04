@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Card from './components/Card.jsx';
 import CardForm from './components/CardForm.jsx';
+import Menus from './components/Menus.jsx';
 
 const axios = require('axios');
 
@@ -12,8 +13,8 @@ class App extends React.Component {
       showForm: false,
       showCard: false,
       showFront: true, 
-      categories: [],
-      currentCategory: '',
+      // categories: [],
+      // currentCategory: '',
       cards: [],
       currentCard: {},
       cardType: ''
@@ -27,9 +28,9 @@ class App extends React.Component {
     this.getCategories = this.getCategories.bind(this);
   }
 
-  componentDidMount() {
-    this.getCategories()
-  }
+  // componentDidMount() {
+  //   this.getCategories()
+  // }
 
   toggleForm(cardType) {
     if (cardType === 'new') this.setState({currentCard: {}, showForm: !this.state.showForm, cardType: cardType});
@@ -83,12 +84,13 @@ class App extends React.Component {
     return (
       <div>
 
-        <select id="subjects" onChange={(e) => this.dropDownChange(e)}>
+        <Menus getCategories ={this.getCategories}/>
+        {/*<select id="subjects" onChange={(e) => this.dropDownChange(e)}>
           <option defaultValue>Card Categories</option>
           {this.state.categories.map(category =>
             <option value={category} key={category}>{category}</option>  
           )}
-        </select>
+          </select>*/}
 
         <select id="cards" onChange={(e) => this.dropDownChange(e)}>
           <option defaultValue>Select a Card</option>

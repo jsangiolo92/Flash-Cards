@@ -26,6 +26,7 @@ class App extends React.Component {
     this.hideCard = this.hideCard.bind(this);
     this.updateCard = this.updateCard.bind(this);
     this.getCategories = this.getCategories.bind(this);
+    this.subjectClick = this.subjectClick.bind(this);
   }
 
   componentDidMount() {
@@ -75,6 +76,11 @@ class App extends React.Component {
     .catch( (err) => console.log('error in get to cards: ', err));
   }
 
+  subjectClick(target) {
+    console.log('clicked!')
+    this.setState({currentCategory: target}, () => this.getCards())
+  }
+
   dropDownChange(e) {
     if (e.target.id === 'subjects') this.setState({currentCategory: e.target.value}, () => this.getCards())
     else if (e.target.id === 'cards') this.setState({currentCard: this.state.cards[e.target.value], showCard: true, showFront: true})
@@ -84,7 +90,7 @@ class App extends React.Component {
     return (
       <div>
 
-        <Menus categories ={this.state.categories}/>
+        <Menus categories={this.state.categories} subjectClick={this.subjectClick}/>
         {/*<select id="subjects" onChange={(e) => this.dropDownChange(e)}>
           <option defaultValue>Card Categories</option>
           {this.state.categories.map(category =>

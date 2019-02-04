@@ -1,11 +1,11 @@
 import React from 'react';
 
-const SubjectsMenu = ({categories}) => {
+const SubjectsMenu = ({categories, subjectClick}) => {
   return(
     <li>
       <ul>
         {categories.map( (category, index) => 
-          <li key={index}>{category}</li>
+          <li onClick={() => {subjectClick(category)}} key={index}>{category}</li>
         )}
       </ul>
     </li>

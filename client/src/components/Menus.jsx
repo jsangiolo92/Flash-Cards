@@ -1,27 +1,16 @@
 import React from 'react';
+import SubjectsMenu from './menu-components/SubjectsMenu.jsx';
 
 const axios = require('axios');
 
-class Menus extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      categories: [],
-      currentCategory: ''
-    }
-  }
-
-  componentDidMount() {
-    this.props.getCategories()
-  }
-
-  render() {
-    return(
-      <nav>
-        Menus PlaceHolder
-      </nav>
-    )
-  }
+const Menus = ({categories}) => {
+  return(
+    <nav>
+      <ul>
+        <SubjectsMenu categories={categories}/>
+      </ul>
+    </nav>
+  )
 }
 
 export default Menus;

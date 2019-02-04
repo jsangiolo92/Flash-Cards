@@ -13,8 +13,8 @@ class App extends React.Component {
       showForm: false,
       showCard: false,
       showFront: true, 
-      // categories: [],
-      // currentCategory: '',
+      categories: [],
+      currentCategory: '',
       cards: [],
       currentCard: {},
       cardType: ''
@@ -28,9 +28,9 @@ class App extends React.Component {
     this.getCategories = this.getCategories.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.getCategories()
-  // }
+  componentDidMount() {
+    this.getCategories()
+  }
 
   toggleForm(cardType) {
     if (cardType === 'new') this.setState({currentCard: {}, showForm: !this.state.showForm, cardType: cardType});
@@ -84,7 +84,7 @@ class App extends React.Component {
     return (
       <div>
 
-        <Menus getCategories ={this.getCategories}/>
+        <Menus categories ={this.state.categories}/>
         {/*<select id="subjects" onChange={(e) => this.dropDownChange(e)}>
           <option defaultValue>Card Categories</option>
           {this.state.categories.map(category =>

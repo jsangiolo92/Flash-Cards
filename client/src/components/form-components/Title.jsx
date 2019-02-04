@@ -2,15 +2,14 @@ import React from 'react';
 
 const Title = ({title, handleChange}) => {
   return(
-    <label>
-      Title
-      <input 
-        name="title" 
-        type="text"
-        value={title}
-        onChange={handleChange}
-      />
-    </label>
+    <input
+      class="card-input title"
+      name="title"
+      placeholder="Title"
+      type="text"
+      value={title}
+      onChange={handleChange}
+    />
   )
 }
 

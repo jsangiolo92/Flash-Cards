@@ -2,14 +2,13 @@ import React from 'react';
 
 const Answer = ({answer, handleChange}) => {
   return(
-    <label>
-      Answer
-      <textarea rows="4" cols="50"
-        name="answer"
-        value={answer}
-        onChange={handleChange}
-      />
-    </label>
+    <textarea
+      class="card-input answer"
+      name="answer"
+      placeholder="Answer"
+      value={answer}
+      onChange={handleChange}
+    />
   )
 }
 

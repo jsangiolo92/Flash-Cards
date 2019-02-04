@@ -47,7 +47,7 @@ class CardForm extends React.Component{
         console.log('new card added to db');
         this.resetForm();
       })
-      .catch( (err) => console.log('error on post to cards'));
+      .catch( (err) => console.log('error on post to cards: ', err));
     }
     else {
       axios.put('/cards', {
@@ -69,7 +69,7 @@ class CardForm extends React.Component{
 
   render() {
     return(
-      <form id="card-form" onSubmit={this.handleSubmit}>
+      <form class="card-form" onSubmit={this.handleSubmit}>
         <Title title={this.state.title} handleChange={this.handleChange}/>
         <br/>
         <Subject subject={this.state.subject} handleChange={this.handleChange}/>
@@ -80,8 +80,8 @@ class CardForm extends React.Component{
         <br/>
         <Author author={this.state.author} handleChange={this.handleChange}/>
         <br/>
-        <input type="submit" value="Submit"/>
-        <button onClick={this.props.toggleForm}>Close Form</button>
+        <input class="card-button" type="submit" value="Submit"/>
+        <button class="card-button" onClick={this.props.toggleForm}>Close Form</button>
       </form>
     )
   }

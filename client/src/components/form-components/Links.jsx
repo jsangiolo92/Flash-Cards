@@ -2,15 +2,13 @@ import React from 'react';
 
 const Links = ({links, handleChange}) => {
   return(
-    <label>
-      Links
-      <textarea rows="4" cols="75" 
-        name="links"
-        value={links}
-        onChange={handleChange}
-      />
-    </label>
-
+    <textarea
+      class="card-input links"
+      name="links"
+      placeholder="Links"
+      value={links}
+      onChange={handleChange}
+    />
   )
 }
 

@@ -77,7 +77,6 @@ class App extends React.Component {
   }
 
   subjectClick(target) {
-    console.log('clicked!')
     this.setState({currentCategory: target}, () => this.getCards())
   }
 

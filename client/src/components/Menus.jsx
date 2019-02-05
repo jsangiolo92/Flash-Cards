@@ -5,7 +5,7 @@ const axios = require('axios');
 
 const Menus = ({categories, subjectClick}) => {
   return(
-    <nav>
+    <nav class="nav-wrap">
       <ul>
         <SubjectsMenu categories={categories} subjectClick={subjectClick}/>
       </ul>

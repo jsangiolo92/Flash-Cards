@@ -14,10 +14,3 @@ const SubjectsMenu = ({categories, subjectClick}) => {
 }
 
 export default SubjectsMenu;
-
-/*<select id="subjects" onChange={(e) => this.dropDownChange(e)}>
-          <option defaultValue>Card Categories</option>
-          {this.state.categories.map(category =>
-            <option value={category} key={category}>{category}</option>  
-          )}
-          </select>*/

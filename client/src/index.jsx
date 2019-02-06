@@ -89,7 +89,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={() => this.toggleForm('new')}>Add a Card</button>
+        <button class="add-button" onClick={() => this.toggleForm('new')}>Add a Card</button>
         <Menus categories={this.state.categories} subjectClick={this.subjectClick}/>
         <CardsDisplay cards={this.state.cards} cardClick={this.cardClick}/>
 

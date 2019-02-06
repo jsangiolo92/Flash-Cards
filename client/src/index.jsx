@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Card from './components/Card.jsx';
+import CardsDisplay from './components/CardsDisplay.jsx';
 import CardForm from './components/CardForm.jsx';
+import Menus from './components/Menus.jsx';
 
 const axios = require('axios');
 
@@ -25,6 +27,8 @@ class App extends React.Component {
     this.hideCard = this.hideCard.bind(this);
     this.updateCard = this.updateCard.bind(this);
     this.getCategories = this.getCategories.bind(this);
+    this.cardClick = this.cardClick.bind(this);
+    this.subjectClick = this.subjectClick.bind(this);
   }
 
   componentDidMount() {
@@ -74,31 +78,20 @@ class App extends React.Component {
     .catch( (err) => console.log('error in get to cards: ', err));
   }
 
-  dropDownChange(e) {
-    if (e.target.id === 'subjects') this.setState({currentCategory: e.target.value}, () => this.getCards())
-    else if (e.target.id === 'cards') this.setState({currentCard: this.state.cards[e.target.value], showCard: true, showFront: true})
+  cardClick(target) {
+    this.setState({currentCard: target, showCard: true, showFront: true})
+  }
+
+  subjectClick(target) {
+    this.setState({currentCategory: target}, () => this.getCards())
   }
 
   render() {
     return (
       <div>
-
-        <select id="subjects" onChange={(e) => this.dropDownChange(e)}>
-          <option defaultValue>Card Categories</option>
-          {this.state.categories.map(category =>
-            <option value={category} key={category}>{category}</option>  
-          )}
-        </select>
-
-        <select id="cards" onChange={(e) => this.dropDownChange(e)}>
-          <option defaultValue>Select a Card</option>
-          {this.state.cards.map( (card, index) =>
-            <option value={index} key={index}>{card.title}</option>  
-          )}
-        </select>
-        <br/><br/>
-
         <button onClick={() => this.toggleForm('new')}>Add a Card</button>
+        <Menus categories={this.state.categories} subjectClick={this.subjectClick}/>
+        <CardsDisplay cards={this.state.cards} cardClick={this.cardClick}/>
 
         {this.state.showForm ? <CardForm 
           card={this.state.currentCard} 

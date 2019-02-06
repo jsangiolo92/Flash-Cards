@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Card from './components/Card.jsx';
+import CardBack from './components/CardBack.jsx';
 import CardsDisplay from './components/CardsDisplay.jsx';
 import CardForm from './components/CardForm.jsx';
 import Menus from './components/Menus.jsx';
@@ -13,7 +13,6 @@ class App extends React.Component {
     this.state = {
       showForm: false,
       showCard: false,
-      showFront: true, 
       categories: [],
       currentCategory: '',
       cards: [],
@@ -23,7 +22,6 @@ class App extends React.Component {
 
     this.toggleForm = this.toggleForm.bind(this);
     this.deleteCard = this.deleteCard.bind(this);
-    this.flipCard = this.flipCard.bind(this);
     this.hideCard = this.hideCard.bind(this);
     this.updateCard = this.updateCard.bind(this);
     this.getCategories = this.getCategories.bind(this);
@@ -47,10 +45,6 @@ class App extends React.Component {
       this.setState({showCard: false}, () => this.getCards())
     })
     .catch( (err) => console.log('error in delete to cards: ', err));
-  }
-
-  flipCard() {
-    this.setState({showFront: !this.state.showFront});
   }
 
   hideCard() {
@@ -92,22 +86,8 @@ class App extends React.Component {
         <button class="add-button" onClick={() => this.toggleForm('new')}>Add a Card</button>
         <Menus categories={this.state.categories} subjectClick={this.subjectClick}/>
         <CardsDisplay cards={this.state.cards} cardClick={this.cardClick}/>
-
-        {this.state.showForm ? <CardForm 
-          card={this.state.currentCard} 
-          toggleForm={this.toggleForm} 
-          getCategories={this.getCategories}
-          submitType={this.state.cardType}/> 
-          : null}
-
-        {this.state.showCard ? <Card 
-          currentCard={this.state.currentCard} 
-          showFront={this.state.showFront}
-          deleteCard={this.deleteCard}
-          flipCard={this.flipCard} 
-          hideCard={this.hideCard} 
-          updateCard={this.updateCard}/>
-          : null}
+        {this.state.showForm ? <CardForm card={this.state.currentCard} toggleForm={this.toggleForm} getCategories={this.getCategories} submitType={this.state.cardType}/> : null}
+        {this.state.showCard ? <CardBack currentCard={this.state.currentCard} deleteCard={this.deleteCard} hideCard={this.hideCard} updateCard={this.updateCard}/> : null}
       </div>
     )
   }

@@ -24,7 +24,9 @@ class CardForm extends React.Component{
 
   resetForm() {
     document.getElementById('card-form').reset();
-    this.setState({title: '', subject: '', answer: '', links: [], author: ''}, () => this.props.getCategories());
+    this.setState({title: '', subject: '', answer: '', links: [], author: ''}, () => {
+      this.props.getCategories();
+    });
   }
 
   handleChange(e) {

@@ -59,7 +59,9 @@ class App extends React.Component {
   getCategories() {
     axios.get('/categories')
     .then( ({data}) => {
-      this.setState({categories: data})
+      this.setState({categories: data}, () => {
+        if (this.state.currentCategory !== '') this.getCards();
+      })
     })
     .catch( (err) => console.log('error in get to categories: ', err));
   }
@@ -86,7 +88,7 @@ class App extends React.Component {
         <button class="add-button" onClick={() => this.toggleForm('new')}>Add a Card</button>
         <Menus categories={this.state.categories} subjectClick={this.subjectClick}/>
         <CardsDisplay cards={this.state.cards} cardClick={this.cardClick}/>
-        {this.state.showForm ? <CardForm card={this.state.currentCard} toggleForm={this.toggleForm} getCategories={this.getCategories} submitType={this.state.cardType}/> : null}
+        {this.state.showForm ? <CardForm card={this.state.currentCard} toggleForm={this.toggleForm} getCategories={this.getCategories} getCards={this.getCards} submitType={this.state.cardType}/> : null}
         {this.state.showCard ? <CardBack currentCard={this.state.currentCard} deleteCard={this.deleteCard} hideCard={this.hideCard} updateCard={this.updateCard}/> : null}
       </div>
     )

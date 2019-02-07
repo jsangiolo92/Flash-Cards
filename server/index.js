@@ -34,7 +34,6 @@ app.post('/cards', (req, res) => {
 })
 
 app.put('/cards', (req, res) => {
-  console.log('request to app.put received', req.body);
   db.updateCard(req.body)
   .then( () => {
     db.addCategory(req.body)
@@ -48,10 +47,6 @@ app.delete('/cards', (req, res) => {
   db.deleteCard(req.body.id)
   .then( (response) => res.send(response))
   .catch( (err) => console.log('error in db.deleteCard: ', err));
-})
-
-app.get('/*', (req, res) => {
-  res.send('Hello, world!');
 })
 
 app.listen(port, () => {

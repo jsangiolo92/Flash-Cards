@@ -1,6 +1,8 @@
 # Flash-Cards
 
-An application to create and review flash cards organized by subject names.
+An application to create and review flash cards organized by subject names. 
+Built with React, Express.js, MongoDB, Mongoose, and CSS.
+
 ![](https://github.com/jsangiolo92/Flash-Cards/blob/master/images/Flash%20Cards%20Main.gif)
 
 ## Getting Started

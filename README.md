@@ -1,6 +1,7 @@
 # Flash-Cards
 
 An application to create and review flash cards organized by subject names.
+![](https://github.com/jsangiolo92/Flash-Cards/blob/master/images/Flash%20Cards%20Main.gif)
 
 ## Getting Started
 ### Running the application locally
@@ -63,6 +64,8 @@ When a subject is selected a GET request to the /cards endpoint will run to retu
 
 ### POST Request
 Clicking the 'Add a Card' button will render a form to be filled out. Submitting the form will send a POST request to the /cards endpoint.
+
+![](https://github.com/jsangiolo92/Flash-Cards/blob/master/images/Flash%20Cards%20Add.gif)
 ```
 # Example Request for POST http://localhost:4000/cards
 Request body:
@@ -78,6 +81,8 @@ Request body:
 
 ### PUT Request
 When viewing the back of a card there is an option to edit the card.  Clicking the edit button will render the form to update the existing information.  Clicking submit after clicking the edit button will send a PUT request to the /cards endpoint.
+
+![](https://github.com/jsangiolo92/Flash-Cards/blob/master/images/Flash%20Cards%20Edit.gif)
 ```
 # Example Request for PUT http://localhost:4000/cards
 Request body:
@@ -93,6 +98,8 @@ Request body:
  
  ### DELETE Request
  When viewing the back of a card there is an option to delete the card. Clicking this will send a DELETE request to the /cards endpoint.
+ 
+ ![](https://github.com/jsangiolo92/Flash-Cards/blob/master/images/Flash%20Cards%20Delete.gif)
  ```
  # Example Request for DELETE http://localhost:4000/cards
  Request body:

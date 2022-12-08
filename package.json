@@ -20,8 +20,8 @@
   "homepage": "https://github.com/jsangiolo92/Flash-Cards#readme",
   "dependencies": {
     "axios": "^0.18.1",
-    "body-parser": "^1.18.3",
-    "express": "^4.16.4",
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
     "mongoose": "^5.7.5",
     "nodemon": "^1.18.9",
     "react": "^16.6.3",
